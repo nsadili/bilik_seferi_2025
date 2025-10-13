@@ -38,9 +38,19 @@ public class Teacher extends Person {
                 + "]";
     }
 
+    public void sayHello() {
+        System.out.println("Teacher says hello!");
+    }
 
+    public void sayHello(String name, int times) {
+        for (int i = 0; i < times; i++)
+            System.out.println("Person says hello to " + name
+                    + " " + times + " times !");
 
+    }
 
-    
+    public static void staticMethod() {
+        System.out.println("Static method of Teacher ");
+    }
 
 }

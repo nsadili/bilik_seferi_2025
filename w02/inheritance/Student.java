@@ -50,7 +50,11 @@ public class Student extends Person {
         this.gpa = gpa;
     }
 
-     float calculateStipend() {
+    float calculateStipend() {
         return GpaRange.getRange(this.gpa).stipend;
+    }
+
+    public void sayHello() {
+        System.out.println("Student says hello!");
     }
 }

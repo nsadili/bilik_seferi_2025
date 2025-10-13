@@ -19,8 +19,6 @@ public class Person {
     public Gender gender;
     private LocalDate dob;
 
-    
-
     public Person(String fName, String lName, Gender gender, LocalDate dob) {
         this.fName = fName;
         this.lName = lName;
@@ -56,4 +54,16 @@ public class Person {
     public String toString() {
         return "Person [fName=" + fName + ", lName=" + lName + ", gender=" + gender + ", dob=" + dob + "]";
     }
+
+    public void sayHello() {
+        System.out.println("Person says hello!");
+    }
+
+    public void sayHello(String target) {
+        System.out.println("Person says hello to " + target + " !");
+    }
+
+    public static void staticMethod(){
+        System.out.println("Static method of Person ");
+    } 
 }
