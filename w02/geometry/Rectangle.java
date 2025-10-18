@@ -8,15 +8,17 @@ public class Rectangle extends Shape implements Resizable {
         // super();
     }
 
-    public Rectangle(double width, double height) {
+    public Rectangle(double width, double height) throws RectangleValidationException {
         super();
-        this.width = width;
+        setWidth(width);
+
         this.height = height;
     }
 
-    public Rectangle(double width, double height, String color, boolean isFilled) {
+    public Rectangle(double width, double height, String color, boolean isFilled) throws RectangleValidationException {
         super(color, isFilled);
-        this.width = width;
+        setWidth(width);
+
         this.height = height;
 
         // super.color = color;
@@ -27,11 +29,15 @@ public class Rectangle extends Shape implements Resizable {
         return width;
     }
 
-    public void setWidth(double width) {
+    public void setWidth(double width) throws RectangleValidationException {
+        if (width <= 0)
+            throw new RectangleValidationException(width + " is not a valid width");
         this.width = width;
     }
 
-    public double getHeight() {
+    public double getHeight() throws RectangleValidationException {
+        if (height <= 0)
+            throw new RectangleValidationException();
         return height;
     }
 
@@ -47,6 +53,11 @@ public class Rectangle extends Shape implements Resizable {
     public void resize(int factor) {
         this.width *= factor;
         this.height *= factor;
+    }
+
+    @Override
+    public String toString() {
+        return "Rectangle [width=" + width + ", height=" + height + "]";
     }
 
 }

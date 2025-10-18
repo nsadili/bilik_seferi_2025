@@ -24,10 +24,14 @@ public class Main {
         // teacherNuraddin.sayHello("Amil", 5);
         // teacherNuraddin.sayHello(5, 3);
 
-        Person memmed = new Teacher("Nuraddin", "Sadili", Gender.MALE, LocalDate.of(1993, 6, 11),
-                "Programming", null, 5000, LocalDate.of(2020, 9, 3));
-        memmed.sayHello("Nuraddin");
+        // Person memmed = new Teacher("Nuraddin", "Sadili", Gender.MALE,
+        // LocalDate.of(1993, 6, 11),
+        // "Programming", null, 5000, LocalDate.of(2020, 9, 3));
+        // memmed.sayHello("Nuraddin");
 
-        ((Teacher)memmed).staticMethod();
+        // ((Teacher)memmed).staticMethod();
+
+        var teacherNew = (Teacher) (new Person(null, null, null, null));
+        System.out.println(teacherNew);
     }
 }

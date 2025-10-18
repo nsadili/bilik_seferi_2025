@@ -4,11 +4,11 @@ public class Square extends Rectangle {
     public Square() {
     }
 
-    public Square(double side) {
+    public Square(double side) throws RectangleValidationException {
         super(side, side);
     }
 
-    public Square(double side, String color, boolean isFilled) {
+    public Square(double side, String color, boolean isFilled) throws RectangleValidationException {
         super(side, side, color, isFilled);
     }
 
@@ -16,7 +16,7 @@ public class Square extends Rectangle {
         return width;
     }
 
-    public void setSide(double side){
+    public void setSide(double side) throws RectangleValidationException{
         setWidth(side);
         setHeight(side);
     }

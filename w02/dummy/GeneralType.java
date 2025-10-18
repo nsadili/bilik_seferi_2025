@@ -27,11 +27,13 @@ public class GeneralType extends A {
     }
 
     public GeneralType() {
-        super(5);
+        // super(5);
         System.out.println("GTC");
     }
 
     public static void main(String[] args) {
         GeneralType gt = new GeneralType();
+
+        A a = new A();
     }
 }

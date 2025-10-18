@@ -1,4 +1,5 @@
 package dummy;
+
 class A {
     static {
         System.out.println("In static init block of A");
@@ -11,6 +12,7 @@ class A {
     {
         System.out.println("In instance init block of A");
     }
+    
 }
 
 class B extends A {
@@ -30,5 +32,7 @@ class B extends A {
 public class Main2 {
     public static void main(String[] args) {
         B b = new B();
+        
+        B b2 = new B();
     }
 }
