@@ -11,6 +11,5 @@ public class UtilityTest {
 		Collection<String> words = Arrays.asList("apple", "anna", "bob", "alice");
 		count = Utility.countIf(words, new PalindromeProperty());
 		System.out.println("Number of palindromes = " + count); // 2
-
 	}
 }
