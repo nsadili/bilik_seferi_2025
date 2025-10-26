@@ -19,7 +19,7 @@ Each exception must:
 
 1. Create a **generic interface** `BankRepository<T>` that defines methods for adding, removing, finding, and listing items.  
 2. Implement this interface in a class called `BankCardRepository` which will manage a collection of `BankCard` objects.  
-3. The repository should internally use any `List` implementation to store cards.
+3. The repository should internally use any `List` or `Map` implementation to store cards.
 
 ---
 
