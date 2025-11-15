@@ -2,26 +2,36 @@ package az.pashabank.bilikseferi.spring_boot_data_jpa_demo.service;
 
 import az.pashabank.bilikseferi.spring_boot_data_jpa_demo.model.dto.EmployeeResponseDto;
 import az.pashabank.bilikseferi.spring_boot_data_jpa_demo.model.dto.EmployeeSaveRequestDto;
+import az.pashabank.bilikseferi.spring_boot_data_jpa_demo.model.entity.SkillEntity;
+import az.pashabank.bilikseferi.spring_boot_data_jpa_demo.model.mapper.AddressMapper;
 import az.pashabank.bilikseferi.spring_boot_data_jpa_demo.model.mapper.EmployeeMapperMapStruct;
 import az.pashabank.bilikseferi.spring_boot_data_jpa_demo.model.mapper.EmployeeMapperV2;
 import az.pashabank.bilikseferi.spring_boot_data_jpa_demo.model.mapper.EmployeeMapperV1;
+import az.pashabank.bilikseferi.spring_boot_data_jpa_demo.repository.AddressRepository;
+import az.pashabank.bilikseferi.spring_boot_data_jpa_demo.repository.DepartmentRepository;
 import az.pashabank.bilikseferi.spring_boot_data_jpa_demo.repository.EmployeeRepository;
+import az.pashabank.bilikseferi.spring_boot_data_jpa_demo.repository.SkillRepository;
+import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 //@Setter
+@RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private EmployeeRepository employeeRepository;
+    private final EmployeeRepository employeeRepository;
+    private final AddressMapper addressMapper;
+    private final DepartmentRepository departmentRepository;
+    private final SkillRepository skillRepository;
 
-    @Autowired
-    public void setEmployeeRepository(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
-    }
-
+    @Transactional
     @Override
     public List<EmployeeResponseDto> getAllEmps() {
         return employeeRepository.findAll()
@@ -32,11 +42,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeResponseDto save(EmployeeSaveRequestDto employeeSaveRequestDto) {
-        var newEntity = employeeRepository.save(
-                EmployeeMapperV2.INSTANCE.toEntity(employeeSaveRequestDto)
-        );
+        var address = addressMapper.toEntity(employeeSaveRequestDto.getAddress());
 
-        return EmployeeMapperV1.toResponseDto(newEntity);
+        var employeeToInsert = EmployeeMapperMapStruct.INSTANCE.toEntity(employeeSaveRequestDto, address);
+
+        var deptObj = departmentRepository.findById(employeeSaveRequestDto.getDeptId())
+                .orElseThrow(() -> new RuntimeException("Dept id is not found"));
+
+        employeeToInsert.setDepartment(deptObj);
+
+        var skills = new HashSet<>(skillRepository.findAllById(employeeSaveRequestDto.getSkillIds()));
+
+        employeeToInsert.setSkills(skills);
+
+        var newEntity = employeeRepository.save(employeeToInsert);
+
+        return EmployeeMapperMapStruct.INSTANCE.toResponseDto(newEntity);
     }
 
     @Override

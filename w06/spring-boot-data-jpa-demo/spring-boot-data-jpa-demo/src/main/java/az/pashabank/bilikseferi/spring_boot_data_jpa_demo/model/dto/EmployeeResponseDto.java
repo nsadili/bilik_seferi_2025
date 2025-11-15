@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -18,4 +19,9 @@ public class EmployeeResponseDto {
     private String email;
     private Double salary;
     private LocalDate hireDate;
+
+    private AddressResponseDto address;
+    private DepartmentResponseDto department;
+
+    private List<SkillDto> skills;
 }

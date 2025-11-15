@@ -1,12 +1,12 @@
 package az.pashabank.bilikseferi.spring_boot_data_jpa_demo.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -28,4 +28,17 @@ public class EmployeeEntity {
     @Column(name = "maas")
     private Double salary;
     private LocalDate hireDate;
+
+
+    @OneToOne(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    private AddressEntity address;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "dep_id", referencedColumnName = "id")
+    private DepartmentEntity department;
+
+    @ManyToMany
+    @JsonIgnore
+    private Set<SkillEntity> skills;
 }
