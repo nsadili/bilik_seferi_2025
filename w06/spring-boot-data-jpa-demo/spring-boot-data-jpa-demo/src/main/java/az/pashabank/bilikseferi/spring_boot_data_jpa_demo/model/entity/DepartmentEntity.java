@@ -2,12 +2,15 @@ package az.pashabank.bilikseferi.spring_boot_data_jpa_demo.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity
 @Table(name = "tbl_dept")
-@Data
+@Getter
+@Setter
 public class DepartmentEntity {
 
     @Id

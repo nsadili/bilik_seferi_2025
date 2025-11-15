@@ -1,10 +1,12 @@
 package az.pashabank.bilikseferi.spring_boot_data_jpa_demo.model.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
 public class AddressEntity {
 
     @Id

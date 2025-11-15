@@ -8,10 +8,11 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Getter
+@Setter
 
 @Entity(name = "employee1")
 //@Table(name = "employee2")
