@@ -28,6 +28,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
     private final AddressMapper addressMapper;
+    private final EmployeeMapperMapStruct employeeMapper;
     private final DepartmentRepository departmentRepository;
     private final SkillRepository skillRepository;
 
@@ -44,7 +45,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmployeeResponseDto save(EmployeeSaveRequestDto employeeSaveRequestDto) {
         var address = addressMapper.toEntity(employeeSaveRequestDto.getAddress());
 
-        var employeeToInsert = EmployeeMapperMapStruct.INSTANCE.toEntity(employeeSaveRequestDto, address);
+        var employeeToInsert = employeeMapper.toEntity(employeeSaveRequestDto);
 
         var deptObj = departmentRepository.findById(employeeSaveRequestDto.getDeptId())
                 .orElseThrow(() -> new RuntimeException("Dept id is not found"));
@@ -57,7 +58,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         var newEntity = employeeRepository.save(employeeToInsert);
 
-        return EmployeeMapperMapStruct.INSTANCE.toResponseDto(newEntity);
+        return employeeMapper.toResponseDto(newEntity);
     }
 
     @Override

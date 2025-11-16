@@ -9,15 +9,19 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {AddressMapper.class})
 public interface EmployeeMapperMapStruct {
     EmployeeMapperMapStruct INSTANCE = Mappers.getMapper(EmployeeMapperMapStruct.class);
 
     EmployeeResponseDto toResponseDto(EmployeeEntity entity);
 
-    @Mapping(target = "firstName", source = "requestDto.ad")
-    @Mapping(target = "lastName", source = "requestDto.soyad")
+//    @Mapping(target = "firstName", source = "requestDto.ad")
+//    @Mapping(target = "lastName", source = "requestDto.soyad")
+//    @Mapping(target = "id", ignore = true)
+//    @Mapping(target = "address", source = "addressEntity")
+//    EmployeeEntity toEntity(EmployeeSaveRequestDto requestDto, AddressEntity addressEntity);
+
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "address", source = "addressEntity")
-    EmployeeEntity toEntity(EmployeeSaveRequestDto requestDto, AddressEntity addressEntity);
+    EmployeeEntity toEntity(EmployeeSaveRequestDto requestDto);
+
 }
