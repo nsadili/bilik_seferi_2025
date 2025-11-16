@@ -3,7 +3,7 @@ spring:
     name: spring-boot-data-jpa-demo
 
   datasource:
-    url: jdbc:h2:file:~/newData/empDB;DB_CLOSE_DELAY=-1
+    url: jdbc:h2:file:./data3/empDB;DB_CLOSE_DELAY=-1
     driver-class-name: org.h2.Driver
     username: admin
     password: admin123

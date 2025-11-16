@@ -35,8 +35,8 @@ public class EmployeeEntity {
             fetch = FetchType.LAZY)
     private AddressEntity address;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dep_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "dept_id", referencedColumnName = "id")
     private DepartmentEntity department;
 
     @ManyToMany
