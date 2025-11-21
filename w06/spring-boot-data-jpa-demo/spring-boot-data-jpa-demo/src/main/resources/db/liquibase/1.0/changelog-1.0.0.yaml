@@ -1,0 +1,116 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1-create-core-tables
+      author: Khayal Farziyev
+      changes:
+
+        # AddressEntity -> address_entity
+        - createTable:
+            tableName: address_entity
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: street
+                  type: VARCHAR(255)
+              - column:
+                  name: city
+                  type: VARCHAR(120)
+              - column:
+                  name: country
+                  type: VARCHAR(120)
+
+        # DepartmentEntity -> tbl_dept
+        - createTable:
+            tableName: tbl_dept
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+
+        # SkillEntity -> skill
+        - createTable:
+            tableName: skill
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(150)
+                  constraints:
+                    nullable: false
+
+        # EmployeeEntity (Entity name: employee1) -> employee1
+        - createTable:
+            tableName: employee1
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: VARCHAR(150)
+              - column:
+                  name: last_name
+                  type: VARCHAR(150)
+              - column:
+                  name: email
+                  type: VARCHAR(200)
+              - column:
+                  name: maas
+                  type: DECIMAL(19,2)
+              - column:
+                  name: hire_date
+                  type: DATE
+              - column:
+                  name: address_id       # 1:1 Employee -> Address (owning side)
+                  type: BIGINT
+                  constraints:
+                    unique: true          # 1:1 üçün unikal
+              - column:
+                  name: dep_id           # ManyToOne Employee -> Department
+                  type: BIGINT
+
+        # Many-to-Many join (Employee <-> Skill) -> skills_employees
+        - createTable:
+            tableName: skills_employees
+            columns:
+              - column:
+                  name: employee_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: skill_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+        # Composite PK for join table
+        - addPrimaryKey:
+            tableName: skills_employees
+            columnNames: employee_id, skill_id
+            constraintName: pk_skills_employees

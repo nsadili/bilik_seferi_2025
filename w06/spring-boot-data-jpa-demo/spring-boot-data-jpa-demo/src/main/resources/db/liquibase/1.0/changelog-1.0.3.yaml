@@ -1,0 +1,52 @@
+databaseChangeLog:
+  - changeSet:
+      id: add_data_to_tables
+      author: Khayal Farziyev
+      changes:
+        - insert:
+            tableName: tbl_dept
+            columns:
+              - column: { name: id, valueNumeric: 10 }
+              - column: { name: name, value: "Engineering" }
+
+        - insert:
+            tableName: skill
+            columns:
+              - column: { name: id, valueNumeric: 100 }
+              - column: { name: name, value: "Java" }
+        - insert:
+            tableName: skill
+            columns:
+              - column: { name: id, valueNumeric: 101 }
+              - column: { name: name, value: "SQL" }
+
+        - insert:
+            tableName: address_entity
+            columns:
+              - column: { name: id, valueNumeric: 1000 }
+              - column: { name: street, value: "Baker St. 221B" }
+              - column: { name: city,   value: "Baku" }
+              - column: { name: country,value: "AZ" }
+
+        - insert:
+            tableName: employee1
+            columns:
+              - column: { name: id,          valueNumeric: 2000 }
+              - column: { name: first_name,  value: "Aysel" }
+              - column: { name: last_name,   value: "Mammadova" }
+              - column: { name: email,       value: "aysel@demo.az" }
+              - column: { name: maas,        valueNumeric: 1500 }
+              - column: { name: hire_date,   valueDate: "2025-02-15" }
+              - column: { name: address_id,  valueNumeric: 1000 }
+              - column: { name: dep_id,      valueNumeric: 10 }
+
+        - insert:
+            tableName: skills_employees
+            columns:
+              - column: { name: employee_id, valueNumeric: 2000 }
+              - column: { name: skill_id,    valueNumeric: 100 }
+        - insert:
+            tableName: skills_employees
+            columns:
+              - column: { name: employee_id, valueNumeric: 2000 }
+              - column: { name: skill_id,    valueNumeric: 101 }
