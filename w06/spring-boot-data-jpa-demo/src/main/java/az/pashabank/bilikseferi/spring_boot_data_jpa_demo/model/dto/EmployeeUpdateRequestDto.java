@@ -6,22 +6,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class EmployeeResponseDto {
-    private Integer id;
+public class EmployeeUpdateRequestDto {
     private String firstName;
     private String lastName;
     private String email;
     private Double salary;
     private LocalDate hireDate;
-
-    private AddressResponseDto address;
-    private DepartmentResponseDto department;
-
-    private List<SkillDto> skills;
 }
