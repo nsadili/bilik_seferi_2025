@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: 03-employee-phone
+      author: Khayal Farziyev
+      changes:
+        - addColumn:
+            tableName: employee1
+            columns:
+              - column: { name: phone, type: VARCHAR(50) }
