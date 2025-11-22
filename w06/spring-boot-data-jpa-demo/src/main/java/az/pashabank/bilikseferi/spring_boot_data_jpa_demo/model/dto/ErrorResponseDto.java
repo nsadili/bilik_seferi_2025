@@ -7,4 +7,5 @@ public record ErrorResponseDto(int status,
                                String path,
                                Instant timestamp,
                                Map<String, String> errors) {
+
 }
