@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.Instant;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
@@ -23,10 +24,11 @@ public class GlobalExceptionHandler {
         var fieldErrors = ex.getBindingResult().getFieldErrors().stream().collect(
                 Collectors.toMap(
                         FieldError::getField,
-                        FieldError::getDefaultMessage,
+                        fe -> Objects.toString(fe.getDefaultMessage(), "invalid value"),
                         (m1, m2) -> m1.concat(", ").concat(m2)));
 
-        return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, request, fieldErrors);
+        return Objects.requireNonNull(
+                buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, request, fieldErrors));
     }
 
 
