@@ -1,5 +1,7 @@
 package az.pashabank.bilikseferi.spring_boot_data_jpa_demo.service;
 
+import az.pashabank.bilikseferi.spring_boot_data_jpa_demo.aspect.annotation.CustomCacheable;
+import az.pashabank.bilikseferi.spring_boot_data_jpa_demo.aspect.annotation.CustomRetryable;
 import az.pashabank.bilikseferi.spring_boot_data_jpa_demo.exceptions.EmployeeNotFoundException;
 import az.pashabank.bilikseferi.spring_boot_data_jpa_demo.model.dto.EmployeeResponseDto;
 import az.pashabank.bilikseferi.spring_boot_data_jpa_demo.model.dto.EmployeeSaveRequestDto;
@@ -29,6 +31,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final SkillRepository skillRepository;
 
     @Override
+    @CustomCacheable
+    @CustomRetryable
     public List<EmployeeResponseDto> getAllEmps() {
         return employeeRepository.findAll()
                 .stream()

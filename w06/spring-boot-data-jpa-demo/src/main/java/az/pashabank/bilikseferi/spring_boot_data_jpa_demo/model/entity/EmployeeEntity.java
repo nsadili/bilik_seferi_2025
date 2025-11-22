@@ -47,5 +47,8 @@ public class EmployeeEntity {
     )
     @JsonIgnore
     @Builder.Default
-    private Set<SkillEntity> skills = Set.of();
+    @JoinTable(name = "skills_employees",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "skill_id"))
+    private Set<SkillEntity> skills = new HashSet<>();
 }
