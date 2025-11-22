@@ -1,0 +1,14 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://postgres:5432/mydatabase
+    username: ${DB_USER}
+    password: ${DB_PASS}
+
+logging:
+  level:
+    root: WARN

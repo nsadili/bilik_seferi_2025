@@ -40,6 +40,11 @@ public class EmployeeEntity {
     private DepartmentEntity department;
 
     @ManyToMany
+    @JoinTable(
+            name = "skills_employees",
+            joinColumns = {@JoinColumn(name = "employee_id")},
+            inverseJoinColumns = {@JoinColumn(name = "skill_id")}
+    )
     @JsonIgnore
     @Builder.Default
     private Set<SkillEntity> skills = Set.of();

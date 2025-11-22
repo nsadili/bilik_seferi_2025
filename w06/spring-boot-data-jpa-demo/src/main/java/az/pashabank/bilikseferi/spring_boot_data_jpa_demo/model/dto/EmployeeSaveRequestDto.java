@@ -41,6 +41,7 @@ public class EmployeeSaveRequestDto {
     @NotNull
     private Integer deptId;
 
+    @Builder.Default
     private Set<@NotNull Integer> skillIds = new HashSet<>();
 
     @Valid

@@ -1,0 +1,14 @@
+spring:
+  config:
+    activate:
+      on-profile: dev-h2
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/mydatabase
+    username: admin
+    password: admin123
+
+logging:
+  level:
+    root: DEBUG

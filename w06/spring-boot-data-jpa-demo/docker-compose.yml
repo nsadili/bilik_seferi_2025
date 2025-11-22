@@ -1,4 +1,21 @@
 services:
+  app:
+    build: .
+    container_name: spring_base_app
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DB_USER: admin
+      DB_PASS: admin123
+
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/mydatabase
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin123
+    ports:
+      - "9090:9090"
+
   postgres:
     image: postgres:16
     container_name: postgres
