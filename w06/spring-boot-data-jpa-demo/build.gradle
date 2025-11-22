@@ -36,7 +36,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
 
     // H2 jdbc Driver
-//    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'com.h2database:h2'
 
     // Postgresql jdbc Driver
     runtimeOnly 'org.postgresql:postgresql'

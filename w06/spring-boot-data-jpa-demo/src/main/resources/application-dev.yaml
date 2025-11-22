@@ -9,6 +9,9 @@ spring:
     username: admin
     password: admin123
 
+server:
+  port: 9091
+
 logging:
   level:
-    root: DEBUG
+    root: INFO
