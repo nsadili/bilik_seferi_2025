@@ -2,11 +2,9 @@ package az.pashabank.bilikseferi.spring_boot_data_jpa_demo.exceptions;
 
 import az.pashabank.bilikseferi.spring_boot_data_jpa_demo.model.dto.ErrorResponseDto;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

@@ -1,0 +1,74 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2-add-fks-and-indexes
+      author: Khayal Farziyev
+      changes:
+
+        # FK: employee1.address_id -> address_entity.id
+        - addForeignKeyConstraint:
+            baseTableName: employee1
+            baseColumnNames: address_id
+            constraintName: fk_emp_address
+            referencedTableName: address_entity
+            referencedColumnNames: id
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+
+        # FK: employee1.dep_id -> tbl_dept.id
+        - addForeignKeyConstraint:
+            baseTableName: employee1
+            baseColumnNames: dep_id
+            constraintName: fk_emp_dept
+            referencedTableName: tbl_dept
+            referencedColumnNames: id
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+
+        # FK: skills_employees.employee_id -> employee1.id
+        - addForeignKeyConstraint:
+            baseTableName: skills_employees
+            baseColumnNames: employee_id
+            constraintName: fk_skills_employees_emp
+            referencedTableName: employee1
+            referencedColumnNames: id
+            onDelete: CASCADE
+            onUpdate: RESTRICT
+
+        # FK: skills_employees.skill_id -> skill.id
+        - addForeignKeyConstraint:
+            baseTableName: skills_employees
+            baseColumnNames: skill_id
+            constraintName: fk_skills_employees_skill
+            referencedTableName: skill
+            referencedColumnNames: id
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+
+        # (Opsional) İndekslər — FK sütunlarında faydalıdır
+        - createIndex:
+            tableName: employee1
+            indexName: idx_employee1_dep_id
+            columns:
+              - column:
+                  name: dep_id
+
+        - createIndex:
+            tableName: employee1
+            indexName: idx_employee1_address_id
+            columns:
+              - column:
+                  name: address_id
+
+        - createIndex:
+            tableName: skills_employees
+            indexName: idx_skills_employees_emp
+            columns:
+              - column:
+                  name: employee_id
+
+        - createIndex:
+            tableName: skills_employees
+            indexName: idx_skills_employees_skill
+            columns:
+              - column:
+                  name: skill_id
